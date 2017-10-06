@@ -1,11 +1,16 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
-#define DATA_SIZE 7
+#include "input.h"
+
+#define DATA_SIZE 7+1 //Null terminated
 
 typedef struct {
-  char data[DATA_SIZE]; //Not null terminated
-  char size;
-} outputData;
+  int stream;
+  char data[DATA_SIZE]; //Null terminated
+  int size;
+} OutputFrame;
+
+OutputFrame processOutput(InputFrame in);
 
 #endif

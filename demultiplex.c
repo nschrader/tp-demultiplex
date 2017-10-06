@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 #include "demultiplex.h"
+#include "functions.h"
+#include "log.h"
 
 static void summary() {
   printf("Reading from: \t%s\n", INPUT_FILE);
@@ -12,6 +14,17 @@ static void summary() {
 
 int main() {
   summary();
-
+  while (!isEndOfInput()) {
+    char* frameIn = readFrame();
+    InputFrame in = processInput(frameIn);
+    bool isOk = checkInput(in);
+    if (!isOk) {
+      rejectFrame(frameIn);
+    } else {
+      OutputFrame out = processOutput(in);
+      writeFrame(out, 0);
+    }
+  }
+  report();
   return EXIT_SUCCESS;
 }
