@@ -42,6 +42,7 @@ void readFrame()
 
 void writeFrame(outputData data,int index)
 {
+   
    openFiles();
 
    for(int i = 0; i <= DATA_SIZE; i++)
@@ -68,6 +69,11 @@ void openFiles()
     }
 }
   
+void rejectFrame(char* c)
+{
+   fprintf(rejectFile,"%s\n",c);
+}
+
 
 
 
