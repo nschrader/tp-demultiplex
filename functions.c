@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #define TAILLE_MAX_TRAME  64
-#define INPUT_FILE "data.sujet"
 #define HEADER_FOOTER 2
 #define SIZE_MAXI TAILLE_MAX_TRAME+HEADER_FOOTER
 
@@ -10,7 +9,7 @@
 void read_frame()
 {
     FILE *f=NULL;
-    
+
     char buffer[SIZE_MAXI];
     int i,ch ;
 
@@ -34,8 +33,3 @@ void read_frame()
 
     printf("%s\n",buffer);
 }
-
-
-
-
-    
