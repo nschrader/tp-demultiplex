@@ -1,9 +1,15 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-void readFrame();
-void writeFrame(outputData data,int index);
+#include <stdbool.h>
+
+#include "input.h"
+#include "output.h"
+
+char* readFrame();
+void writeFrame(OutputFrame data,int index);
 void rejectFrame(char* c);
 void openFiles();
+bool isEndOfInput();
 
 #endif

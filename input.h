@@ -5,6 +5,9 @@ typedef struct {
   int stream;
   char* data; //Null terminated
   int checksum;
-} inputData;
+} InputFrame;
+
+InputFrame processInput(char *string);
+bool checkInput(InputFrame in);
 
 #endif

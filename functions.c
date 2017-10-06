@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "demultiplex.h"
 #include <stdbool.h>
 
+#include "functions.h"
+#include "demultiplex.h"
+#include "output.h"
+
 #define TAILLE_MAX_TRAME  64
-#define INPUT_FILE "data.sujet"
 #define HEADER_FOOTER 2
 #define SIZE_MAXI TAILLE_MAX_TRAME+HEADER_FOOTER
 
@@ -13,10 +15,10 @@ static FILE* outputFiles[MAX_NB_FIC];
 static FILE* inputFile;
 static FILE* rejectFile;
 
-void readFrame()
+char* readFrame()
 {
     FILE *f=NULL;
-    
+
     static char buffer[SIZE_MAXI];
 
     f=fopen(INPUT_FILE,"r");
@@ -37,21 +39,21 @@ void readFrame()
 
     fclose(f);
 
-    printf("%s\n",buffer);
+    return buffer;
 }
 
-void writeFrame(outputData data,int index)
+void writeFrame(OutputFrame data,int index)
 {
    
    openFiles();
 
    for(int i = 0; i <= DATA_SIZE; i++)
    {
-      fputc(outputFiles[index], data.data);
+      fputc(data.data[i], outputFiles[index]);
    }
-   
+
    fprintf(outputFiles[index],"%d",data.size);
-} 
+}
 
 void openFiles()
 {
@@ -71,10 +73,13 @@ void openFiles()
   
 void rejectFrame(char* c)
 {
+   openFiles();
    fprintf(rejectFile,"%s\n",c);
 }
 
 
 
-
-    
+bool isEndOfInput() {
+  openFiles();
+  return feof(inputFile);
+}
