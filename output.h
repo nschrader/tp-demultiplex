@@ -4,7 +4,7 @@
 #define DATA_SIZE 7
 
 typedef struct {
-  char data[DATA_SIZE];
+  char data[DATA_SIZE]; //Not null terminated
   char size;
 } outputData;
 

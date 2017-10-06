@@ -3,8 +3,8 @@
 
 typedef struct {
   int stream;
-  char* data;
+  char* data; //Null terminated
   int checksum;
-} inputData; 
+} inputData;
 
 #endif
