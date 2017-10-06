@@ -6,4 +6,4 @@ void logWrite(int stream);
 void logRead();
 void report();
 
-#endif LOG_H
+#endif
