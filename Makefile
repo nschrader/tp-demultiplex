@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I.
-OBJ = 
+OBJ = demultiplex.o
 
 all:	main
 
