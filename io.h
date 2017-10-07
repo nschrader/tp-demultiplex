@@ -7,9 +7,8 @@
 #include "output.h"
 
 char* readFrame();
-void writeFrame(OutputFrame data,int index);
+void writeFrame(OutputFrame data, int index);
 void rejectFrame(char* c);
-void openFiles();
 bool isEndOfInput();
 
 #endif

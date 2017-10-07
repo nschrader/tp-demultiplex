@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "demultiplex.h"
-#include "functions.h"
+#include "io.h"
 #include "input.h"
 #include "output.h"
 #include "log.h"
