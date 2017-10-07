@@ -7,7 +7,7 @@
 #include "output.h"
 
 char* readFrame();
-void writeFrame(OutputFrame data, int index);
+void writeFrames(OutputFrame* frames, int n);
 void rejectFrame(char* c);
 bool isEndOfInput();
 

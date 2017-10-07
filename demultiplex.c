@@ -23,8 +23,10 @@ int main() {
     if (!isOk) {
       rejectFrame(frameIn);
     } else {
-      OutputFrame out = processOutput(in);
-      writeFrame(out, 0);
+      OutputFrame* out;
+      int outN;
+      processOutput(&in, &out, &outN);
+      writeFrames(out, outN);
     }
   }
   report();

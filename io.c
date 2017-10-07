@@ -81,11 +81,17 @@ char* readFrame()
   return buffer;
 }
 
-void writeFrame(OutputFrame frame, int stream)
+static void writeFrame(OutputFrame* frame)
 {
   openFiles();
-  logWrite(stream);
-  fprintf(outputFiles[stream], "%s%d\n", frame.data, frame.size);
+  logWrite(frame->stream);
+  fprintf(outputFiles[frame->stream], "%s%d\n", frame->data, frame->size);
+}
+
+void writeFrames(OutputFrame* frames, int n) {
+  for (int i = 0; i < n; i++) {
+    writeFrame(&frames[i]);
+  }
 }
 
 void rejectFrame(char* c)
