@@ -15,4 +15,4 @@ main:	$(OBJ)
 			$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
-			rm -f *.o $(PROG)
+			rm -f *.o rejetes.data f? $(PROG)

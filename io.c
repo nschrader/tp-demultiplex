@@ -48,7 +48,7 @@ static void openOutputFiles() {
   {
     char buffer[16];
     sprintf(buffer, "%s%d", OUTPUT_FILES, i);
-    outputFiles[i] = fopen(buffer, "r+");
+    outputFiles[i] = fopen(buffer, "a");
     if (outputFiles[i] == NULL) {
       perror("Could not open output file");
       exit(EXIT_FAILURE);
