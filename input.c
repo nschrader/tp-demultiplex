@@ -33,5 +33,16 @@ InputFrame processInput(char *string) {
 }
 
 bool checkInput(InputFrame in) {
-  return true;
+
+    int check = in.checksum ;
+    bool verif;
+
+    if ((check%16) == 5){
+        verif = true ;
+    } else {
+        verif = false ;
+    }
+
+    return verif
 }
+
