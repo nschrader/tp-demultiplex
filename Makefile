@@ -7,7 +7,7 @@ PROG=demultiplex
 .PHONY: clean
 .PHONY:	doc
 
-all:	main
+all:	main doc
 
 main:	$(OBJ)
 			$(CC) -o $(PROG) $^ $(CFLAGS)

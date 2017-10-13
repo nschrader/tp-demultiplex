@@ -1,4 +1,6 @@
 /**
+ * @file
+ *
  * Contient les méthodes de traitement des paquets entrants
  */
 
@@ -14,14 +16,18 @@
  * Lecture de la trame
  */
 char* readFrame();
+
 /**
  * Ecriture des trames dans les fichiers sortants
  */
 void writeFrames(OutputFrame* frames, int n);
+
 /**
- * Rejette les trames invalides
+ * Rejetter les trames invalides
  */
 void rejectFrame(char* c);
+
+
 bool isEndOfInput();
 
 #endif
