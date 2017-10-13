@@ -7,7 +7,7 @@
 #include "log.h"
 #include "output.h"
 
-#define TAILLE_MAX_TRAME  64
+
 #define HEADER_FOOTER 2
 #define SIZE_MAXI TAILLE_MAX_TRAME+HEADER_FOOTER
 
