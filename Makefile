@@ -5,6 +5,7 @@ PROG=demultiplex
 
 .PHONY: all
 .PHONY: clean
+.PHONY:	doc
 
 all:	main
 
@@ -15,4 +16,7 @@ main:	$(OBJ)
 			$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
-			rm -f *.o rejetes.data f? $(PROG)
+			rm -rf *.o rejetes.data f? html $(PROG)
+
+doc:
+			doxygen
