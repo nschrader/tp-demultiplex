@@ -16,12 +16,12 @@ static void initLog() {
     memset(outputFramesCount, 0, MAX_NB_FIC);
     inputFramesCount = 0;
     rejectedFramesCount = 0;
+    isInited = true;
   }
-  isInited = true;
 }
 
-static int sumUpCounters() {
-  int sum = inputFramesCount;
+static int sumUpOutputCounters() {
+  int sum = 0;
   for (size_t i = 0; i < MAX_NB_FIC; i++) {
     sum += outputFramesCount[i];
   }
@@ -45,10 +45,9 @@ void logRead() {
 
 void report() {
   initLog();
-  assert(sumUpCounters() == rejectedFramesCount);
   printf("------------REPORT------------\n");
-  printf("Frames read: \t%d\n", inputFramesCount);
+  printf("Frames read: \t\t%d\n", inputFramesCount);
   printf("Frames rejected: \t%d\n", rejectedFramesCount);
-  printf("Frames written: \t%d\n", outputFramesCount);
+  printf("Frames written: \t%d\n", sumUpOutputCounters());
   printf("------------------------------\n");
 }

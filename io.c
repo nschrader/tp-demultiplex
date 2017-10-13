@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "io.h"
 #include "demultiplex.h"
@@ -36,7 +37,7 @@ static void openInputFile() {
 }
 
 static void openRejectFile() {
-  rejectFile=fopen(REJECT_FILE, "a");
+  rejectFile=fopen(REJECT_FILE, "w");
   if (rejectFile == NULL) {
     perror("Could not open reject file");
     exit(EXIT_FAILURE);
@@ -48,7 +49,7 @@ static void openOutputFiles() {
   {
     char buffer[16];
     sprintf(buffer, "%s%d", OUTPUT_FILES, i);
-    outputFiles[i] = fopen(buffer, "a");
+    outputFiles[i] = fopen(buffer, "w");
     if (outputFiles[i] == NULL) {
       perror("Could not open output file");
       exit(EXIT_FAILURE);
@@ -64,6 +65,7 @@ static void openFiles()
     openRejectFile();
     openOutputFiles();
     atexit(&stopIO);
+    isOpened = true;
   }
 }
 
@@ -71,14 +73,14 @@ char* readFrame()
 {
   static char buffer[SIZE_MAXI];
   openFiles();
-
-  while (!feof(inputFile))
-  {
-    logRead();
-    fgets(buffer, SIZE_MAXI, inputFile);
+  logRead();
+  char* status = fgets(buffer, SIZE_MAXI, inputFile);
+  if (status != NULL) {
+    buffer[strlen(buffer)-1] = '\0'; //Get rid of \n
+    return buffer;
+  } else {
+    return NULL;
   }
-
-  return buffer;
 }
 
 static void writeFrame(OutputFrame* frame)

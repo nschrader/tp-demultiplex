@@ -7,8 +7,7 @@
 
 typedef struct {
   int stream;
-  char* data; //Null terminated
-  char _data[TAILLE_MAX_TRAME]; //Hidden memory allocation
+  char data[TAILLE_MAX_TRAME]; //Null terminated
   int checksum;
 } InputFrame;
 

@@ -12,7 +12,7 @@
 static InputFrame initInputFrame() {
   InputFrame in;
   in.stream = INVALID;
-  in.data = NULL;
+  in.data[0] = '\0';
   in.checksum = INVALID;
   return in;
 }
@@ -21,7 +21,7 @@ static int processStream(char* string) {
   char* err = NULL;
   char cStream[2] = {string[0], '\0'};
   int stream = strtol(cStream, &err, DEC);
-  if (err) {
+  if (*err != '\0') {
       stream = INVALID;
   }
   return stream;
@@ -31,31 +31,38 @@ static int processChecksum(char* string) {
   char* err = NULL;
   char cChecksum[2] = {string[strlen(string)-1], '\0'};
   int checksum = strtol(cChecksum, &err, HEX);
-  if (err) {
+  if (*err != '\0') {
       checksum = INVALID;
   }
   return checksum;
 }
 
 static void processData(char* string, InputFrame* in) {
-  in->data = in->_data;
-  memcpy(in->data, &string[1], sizeof(char) * (strlen(string)-2));
+  int len = strlen(string);
+  memcpy(in->data, &string[1], sizeof(char) * (len-2));
+  in->data[len-2] = '\0';
 }
 
 InputFrame processInput(char *string) {
   int len = strlen(string);
   InputFrame in = initInputFrame();
 
-  if (len > 3) {
+  if (len >= 2) {
      in.stream = processStream(string);
      processData(string, &in);
      in.checksum = processChecksum(string);
   }
-
   return in;
 }
 
 bool checkInput(InputFrame in) {
-  int checksum = strlen(in.data) % 16;
-  return checksum == in.checksum;
+  bool checksumValid = false;
+  if (in.checksum != INVALID) {
+    int checksum = strlen(in.data) % 16;
+    checksumValid = checksum == in.checksum;
+  }
+
+  bool streamValid = in.stream != INVALID;
+  bool dataValid = in.data != NULL;
+  return streamValid && dataValid && checksumValid;
 }
