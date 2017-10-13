@@ -1,4 +1,4 @@
-#define _GNU_SOURCE // We need memccpy form X/Open
+#define _GNU_SOURCE // We need memccpy form X/Open                 
 #include <stdlib.h>
 #include <string.h>
 
@@ -12,7 +12,7 @@ static int calculateNumberOfOutputFrames(InputFrame* in) {
 }
 
 static int copyDataToOutputFrameAndFill(char* data, OutputFrame *out) {
-  char* after0 = memccpy(out->data, data, DATA_SIZE, '\0');
+  char* after0 = memccpy(out->data, data, '\0',DATA_SIZE);
   out->data[DATA_SIZE] = '\0';
   if (after0 == NULL) {
     return DATA_SIZE;

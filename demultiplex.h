@@ -1,3 +1,7 @@
+/**
+ * Contient la logique de notre programme
+ */
+
 #ifndef DEMULTIPLEX_H
 #define DEMULTIPLEX_H
 
