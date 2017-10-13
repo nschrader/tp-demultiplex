@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "input.h"
 #include "output.h"
@@ -8,25 +9,47 @@
 #define HEX 16
 #define INVALID -1
 
-InputFrame processInput(char *string) {
-  
-  int len = strlen(string);
-  char *err = NULL;
+static InputFrame initInputFrame() {
+  InputFrame in;
+  in.stream = INVALID;
+  in.data = NULL;
+  in.checksum = INVALID;
+  return in;
+}
 
-  if (len>3){
-      
-     InputFrame in = {0};
-     in.stream = strtol(&string[0], &err, DEC);
-     if(!err) {
-         in.stream = INVALID ;
-         *err = NULL ;
-     }
-     in.data = &in._data;
-     memcpy(in.data,&string[1],sizeOf(char)*(len-2));
-     in.checksum = strtol(&string[len-1], &err, HEX);
-     if(!err) {
-         in.checksum = INVALID ;
-     }
+static int processStream(char* string) {
+  char* err = NULL;
+  char cStream[2] = {string[0], '\0'};
+  int stream = strtol(cStream, &err, DEC);
+  if (err) {
+      stream = INVALID;
+  }
+  return stream;
+}
+
+static int processChecksum(char* string) {
+  char* err = NULL;
+  char cChecksum[2] = {string[strlen(string)-1], '\0'};
+  int checksum = strtol(cChecksum, &err, HEX);
+  if (err) {
+      checksum = INVALID;
+  }
+  return checksum;
+}
+
+static void processData(char* string, InputFrame* in) {
+  in->data = in->_data;
+  memcpy(in->data, &string[1], sizeof(char) * (strlen(string)-2));
+}
+
+InputFrame processInput(char *string) {
+  int len = strlen(string);
+  InputFrame in = initInputFrame();
+
+  if (len > 3) {
+     in.stream = processStream(string);
+     processData(string, &in);
+     in.checksum = processChecksum(string);
   }
 
   return in;

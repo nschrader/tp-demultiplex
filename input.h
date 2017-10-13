@@ -2,13 +2,14 @@
 #define INPUT_H value
 
 #include <stdbool.h>
-#include "io.h"
+
+#include "demultiplex.h"
 
 typedef struct {
-  int stream; 
+  int stream;
   char* data; //Null terminated
-  char _data[TAILLE_MAX_TRAME];
-  int checksum; 
+  char _data[TAILLE_MAX_TRAME]; //Hidden memory allocation
+  int checksum;
 } InputFrame;
 
 InputFrame processInput(char *string);

@@ -5,5 +5,6 @@
 #define INPUT_FILE "sujet.data"
 #define OUTPUT_FILES "f"
 #define REJECT_FILE "rejetes.data"
+#define TAILLE_MAX_TRAME 64
 
 #endif
