@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I. -std=c99
+CFLAGS=-std=c99 -g
 OBJ=demultiplex.o log.o io.o input.o output.o
 PROG=demultiplex
 
