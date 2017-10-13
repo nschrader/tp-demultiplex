@@ -1,10 +1,11 @@
 CC=gcc
-CFLAGS=-I. -std=c99
+CFLAGS=-std=c99 -g
 OBJ=demultiplex.o log.o io.o input.o output.o
 PROG=demultiplex
 
 .PHONY: all
 .PHONY: clean
+.PHONY:	doc
 
 all:	main
 
@@ -15,4 +16,7 @@ main:	$(OBJ)
 			$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
-			rm -f *.o rejetes.data f? $(PROG)
+			rm -rf *.o rejetes.data f? html $(PROG)
+
+doc:
+			doxygen

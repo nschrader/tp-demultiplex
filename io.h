@@ -6,10 +6,7 @@
 #define FUNCTIONS_H
 
 #include <stdbool.h>
-/**
- * Taille maximum de la trame
- */
-#define TAILLE_MAX_TRAME 64
+
 #include "input.h"
 #include "output.h"
 
