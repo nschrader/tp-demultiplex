@@ -1,6 +1,5 @@
 /**
  * @file
- *
  * Contient les méthodes de création et traitement des données sortantes
  */
 
@@ -13,13 +12,18 @@
  * Nombre de bytes de données
  */
 #define DATA_SIZE 7
+
 /**
  * Un seul byte nul
  */
 #define A_NULL_BYTE 1
 
 /**
+ * @struct OutputFrame
  * Structure contenant les paquets dans le format entrant
+ *
+ * @var OutputFrame::stream
+ * Numero de stream sortant
  */
 typedef struct {
   int stream;

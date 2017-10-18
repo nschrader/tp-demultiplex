@@ -1,3 +1,14 @@
+/**
+ * @mainpage
+ * Hi!
+ *
+ * @see demultiplex.h
+ * @see input.h
+ * @see output.h
+ * @see log.h
+ * @see io.h
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,7 +1,6 @@
 /**
  * @file
  *
- *
  */
 
 #ifndef INPUT_H
