@@ -1,15 +1,18 @@
 /**
- * Contient les méthodes de création et traitement des données sortantes 
+ * @file
+ *
+ * Contient les méthodes de création et traitement des données sortantes
  */
 
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
 #include "input.h"
+
 /**
- * Nombre de bytes de données 
+ * Nombre de bytes de données
  */
-#define DATA_SIZE 7 
+#define DATA_SIZE 7
 /**
  * Un seul byte nul
  */
@@ -18,12 +21,12 @@
 /**
  * Structure contenant les paquets dans le format entrant
  */
-
 typedef struct {
   int stream;
   char data[DATA_SIZE + A_NULL_BYTE];
   int size;
 } OutputFrame;
+
 /**
  * Traitement paquets entrant et écriture dans les paquets sortants
  */

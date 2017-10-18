@@ -10,20 +10,18 @@
 
 
 #define HEADER_FOOTER 2
-#define SIZE_MAXI TAILLE_MAX_TRAME+HEADER_FOOTER
+#define SIZE_MAXI (TAILLE_MAX_TRAME+HEADER_FOOTER)
 
 static bool isOpened;
 static FILE* outputFiles[MAX_NB_FIC];
 static FILE* inputFile;
 static FILE* rejectFile;
 
-static void stopIO()
-{
+static void stopIO() {
   fclose(inputFile);
   fclose(rejectFile);
 
-  for(int i = 0; i<MAX_NB_FIC; i++)
-  {
+  for(int i = 0; i<MAX_NB_FIC; i++) {
     fclose(outputFiles[i]);
   }
 }
@@ -57,10 +55,8 @@ static void openOutputFiles() {
   }
 }
 
-static void openFiles()
-{
-  if(!isOpened)
-  {
+static void openFiles() {
+  if(!isOpened) {
     openInputFile();
     openRejectFile();
     openOutputFiles();
@@ -69,22 +65,20 @@ static void openFiles()
   }
 }
 
-char* readFrame()
-{
+char* readFrame() {
   static char buffer[SIZE_MAXI];
   openFiles();
   logRead();
   char* status = fgets(buffer, SIZE_MAXI, inputFile);
   if (status != NULL) {
-    buffer[strlen(buffer)-1] = '\0'; //Get rid of \n
+    lastChar(buffer) = '\0'; //Get rid of \n
     return buffer;
   } else {
     return NULL;
   }
 }
 
-static void writeFrame(OutputFrame* frame)
-{
+static void writeFrame(OutputFrame* frame) {
   openFiles();
   logWrite(frame->stream);
   fprintf(outputFiles[frame->stream], "%s%d\n", frame->data, frame->size);
@@ -96,15 +90,13 @@ void writeFrames(OutputFrame* frames, int n) {
   }
 }
 
-void rejectFrame(char* c)
-{
+void rejectFrame(char* c) {
   openFiles();
   logReject();
   fprintf(rejectFile, "%s\n", c);
 }
 
-bool isEndOfInput()
-{
+bool isEndOfInput() {
   openFiles();
   return feof(inputFile);
 }

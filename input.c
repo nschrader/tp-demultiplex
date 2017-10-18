@@ -19,7 +19,7 @@ static InputFrame initInputFrame() {
 
 static int processStream(char* string) {
   char* err = NULL;
-  char cStream[2] = {string[0], '\0'};
+  char cStream[2] = {firstChar(string), '\0'};
   int stream = strtol(cStream, &err, DEC);
   if (*err != '\0') {
       stream = INVALID;
@@ -29,7 +29,7 @@ static int processStream(char* string) {
 
 static int processChecksum(char* string) {
   char* err = NULL;
-  char cChecksum[2] = {string[strlen(string)-1], '\0'};
+  char cChecksum[2] = {lastChar(string), '\0'};
   int checksum = strtol(cChecksum, &err, HEX);
   if (*err != '\0') {
       checksum = INVALID;
@@ -59,10 +59,9 @@ bool checkInput(InputFrame in) {
   bool checksumValid = false;
   if (in.checksum != INVALID) {
     int checksum = strlen(in.data) % 16;
-    checksumValid = checksum == in.checksum;
+    checksumValid = (checksum == in.checksum);
   }
 
-  bool streamValid = in.stream != INVALID;
-  bool dataValid = in.data != NULL;
-  return streamValid && dataValid && checksumValid;
+  bool streamValid = (in.stream != INVALID);
+  return streamValid && checksumValid;
 }

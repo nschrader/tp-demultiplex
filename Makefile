@@ -1,11 +1,10 @@
 CC=gcc
-CFLAGS=-std=c99 -g
-OBJ=demultiplex.o log.o io.o input.o output.o
+CFLAGS=-g -std=c99 -D_GNU_SOURCE
 PROG=demultiplex
+SRC=demultiplex.c log.c io.c input.c output.c
+OBJ=${SRC:.c=.o}
 
-.PHONY: all
-.PHONY: clean
-.PHONY:	doc
+.PHONY: all clean doc
 
 all:	main doc
 

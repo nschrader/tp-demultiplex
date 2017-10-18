@@ -1,4 +1,6 @@
 /**
+ * @file
+ *
  * Contient la logique de notre programme
  */
 
@@ -10,5 +12,8 @@
 #define OUTPUT_FILES "f"
 #define REJECT_FILE "rejetes.data"
 #define TAILLE_MAX_TRAME 64
+
+#define firstChar(x) (x[0])
+#define lastChar(x) (x[strlen(x)-1])
 
 #endif

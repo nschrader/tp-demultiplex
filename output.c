@@ -1,4 +1,3 @@
-#define _GNU_SOURCE // We need memccpy form X/Open                 
 #include <stdlib.h>
 #include <string.h>
 
