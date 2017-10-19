@@ -4,7 +4,7 @@ PROG=demultiplex
 SRC=demultiplex.c log.c io.c input.c output.c
 OBJ=${SRC:.c=.o}
 
-.PHONY: all clean doc
+.PHONY: all clean doc run
 
 all:	main doc
 
@@ -19,3 +19,7 @@ clean:
 
 doc:
 			doxygen
+
+run:	main
+			./$(PROG)
+			cp rejetes.data f0
