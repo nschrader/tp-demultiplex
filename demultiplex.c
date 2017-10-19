@@ -2,6 +2,30 @@
  * @mainpage
  * Ce programme permet de démultiplexer un fichier de trames réseaux en
  * differents fichiers de paquets.
+ *
+ * @section Make
+ * Pour compiler:
+ * @code
+ * make main
+ * @endcode
+ * Pour exécuter:
+ * @code
+ * make run
+ * @endcode
+ * Pour générer la documentation:
+ * @code
+ * make doc
+ * @endcode
+ * Pour nettoyer:
+ * @code
+ * make clean
+ * @endcode
+ * Pour faire tout (sauf nettoyer):
+ * @code
+ * make all
+ * @endcode
+ *
+ * @section programme Logique du programme:
  * @snippet demultiplex.c main
  *
  * @see demultiplex.h

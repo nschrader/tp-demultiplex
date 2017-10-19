@@ -21,7 +21,7 @@ static void stopIO() {
   fclose(inputFile);
   fclose(rejectFile);
 
-  for(int i = 0; i<MAX_NB_FIC; i++) {
+  for (int i = 0; i<MAX_NB_FIC; i++) {
     fclose(outputFiles[i]);
   }
 }
@@ -43,7 +43,7 @@ static void openRejectFile() {
 }
 
 static void openOutputFiles() {
-  for(int i = 0; i < MAX_NB_FIC; i++)
+  for (int i = 0; i < MAX_NB_FIC; i++)
   {
     char buffer[16];
     sprintf(buffer, "%s%d", OUTPUT_FILES, i);

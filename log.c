@@ -22,7 +22,7 @@ static void initLog() {
 
 static int sumUpOutputCounters() {
   int sum = 0;
-  for (size_t i = 0; i < MAX_NB_FIC; i++) {
+  for (int i = 0; i < MAX_NB_FIC; i++) {
     sum += outputFramesCount[i];
   }
   return sum;
