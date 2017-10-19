@@ -1,6 +1,8 @@
 /**
  * @mainpage
- * Hi!
+ * Ce programme permet de démultiplexer un fichier de trames réseaux en
+ * differents fichiers de paquets.
+ * @snippet demultiplex.c main
  *
  * @see demultiplex.h
  * @see input.h
@@ -24,6 +26,7 @@ static void summary() {
   printf("Rejecting to: \t%s\n\n", REJECT_FILE);
 }
 
+//! [main]
 int main() {
   summary();
   while (!isEndOfInput()) {
@@ -45,3 +48,4 @@ int main() {
   report();
   return EXIT_SUCCESS;
 }
+//! [main]

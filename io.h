@@ -1,6 +1,6 @@
 /**
  * @file
- * Contient les méthodes de traitement des paquets entrants
+ * Gestion des fichiers d'entrée et de sortie
  */
 
 #ifndef FUNCTIONS_H
@@ -13,20 +13,30 @@
 
 /**
  * Lecture de la trame dans le fichier d'entrée
- * @returns La trame lue en tant que chaine de caractères
+ * @returns La trame lue en tant que chaîne de caractères, emplacement static
  */
 char* readFrame();
 
 /**
- * Ecriture des trames dans les fichiers sortants
+ * Écriture des trames dans le fichier sortant correspondant
+ * @param frames
+ * Tableau avec les trames sortantes à écrire
+ * @param n
+ * Nombre de trames dans le tableau
  */
 void writeFrames(OutputFrame* frames, int n);
 
 /**
- * Rejetter les trames invalides
+ * Rejeter une trame invalide
+ * @param c
+ * Trame invalide
  */
 void rejectFrame(char* c);
 
+/**
+ * Vérifier si le fichier d'entrée est epuisé
+ * @returns true (epuisé), false sinon
+ */
 bool isEndOfInput();
 
 #endif
