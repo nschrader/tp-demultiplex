@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -std=c99 -D_GNU_SOURCE
+CFLAGS=-g -std=c99 -D_GNU_SOURCE -Wall
 PROG=demultiplex
 SRC=demultiplex.c log.c io.c input.c output.c
 OBJ=${SRC:.c=.o}
